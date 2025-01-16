@@ -1,0 +1,33 @@
+<odoo>
+  <data>
+    <record id="view_ejemplar_tree" model="ir.ui.view">
+      <field name="name">biblioteca.ejemplar.tree</field>
+      <field name="model">biblioteca.ejemplar</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="comic_id"/>
+          <field name="socio_id"/>
+          <field name="fecha_inicio"/>
+          <field name="fecha_fin"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_ejemplar_form" model="ir.ui.view">
+      <field name="name">biblioteca.ejemplar.form</field>
+      <field name="model">biblioteca.ejemplar</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <field name="comic_id"/>
+            <field name="socio_id"/>
+            <field name="fecha_inicio"/>
+            <field name="fecha_fin"/>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <menuitem name="Ejemplares" id="menu_ejemplares" parent="menu_biblioteca_root" action="action_ejemplar"/>
+  </data>
+</odoo>

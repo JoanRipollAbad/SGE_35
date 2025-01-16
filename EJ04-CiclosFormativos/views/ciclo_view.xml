@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_ciclo_form" model="ir.ui.view">
+        <field name="name">Ciclo Formativo Form</field>
+        <field name="model">ciclo.formativo</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="modulo_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ciclo_tree" model="ir.ui.view">
+        <field name="name">Ciclo Formativo Tree</field>
+        <field name="model">ciclo.formativo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_ciclo_formativo" model="ir.actions.act_window">
+        <field name="name">Ciclos Formativos</field>
+        <field name="res_model">ciclo.formativo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record id="view_modulo_form" model="ir.ui.view">
+        <field name="name">Módulo Formativo Form</field>
+        <field name="model">modulo.formativo</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="ciclo_id"/>
+                        <field name="alumno_ids"/>
+                        <field name="profesor_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_modulo_tree" model="ir.ui.view">
+        <field name="name">Módulo Formativo Tree</field>
+        <field name="model">modulo.formativo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="ciclo_id"/>
+                <field name="profesor_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_modulo" model="ir.actions.act_window">
+        <field name="name">Módulos</field>
+        <field name="res_model">modulo.formativo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+     <record id="view_alumno_form" model="ir.ui.view">
+        <field name="name">Alumno Form</field>
+        <field name="model">alumno.instituto</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="modulo_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_alumno_tree" model="ir.ui.view">
+        <field name="name">Alumno Tree</field>
+        <field name="model">alumno.instituto</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_alumno" model="ir.actions.act_window">
+        <field name="name">Alumnos</field>
+        <field name="res_model">alumno.instituto</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+     <record id="view_profesor_form" model="ir.ui.view">
+        <field name="name">Profesor Form</field>
+        <field name="model">profesor.instituto</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="modulo_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_profesor_tree" model="ir.ui.view">
+        <field name="name">Profesor Tree</field>
+        <field name="model">profesor.instituto</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_profesor" model="ir.actions.act_window">
+        <field name="name">Profesores</field>
+        <field name="res_model">profesor.instituto</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_ciclo_root" name="Gestión de Ciclos" sequence="10"/>
+    <menuitem id="menu_ciclo_formativo" name="Ciclos Formativos" parent="menu_ciclo_root" action="action_ciclo_formativo" sequence="10"/>
+    <menuitem id="menu_modulo" name="Módulos" parent="menu_ciclo_root" action="action_modulo" sequence="20"/>
+    <menuitem id="menu_alumno" name="Alumnos" parent="menu_ciclo_root" action="action_alumno" sequence="30"/>
+    <menuitem id="menu_profesor" name="Profesores" parent="menu_ciclo_root" action="action_profesor" sequence="40"/>
+
+</odoo>
+

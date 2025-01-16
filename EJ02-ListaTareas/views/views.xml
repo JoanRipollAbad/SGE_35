@@ -1,0 +1,71 @@
+<odoo>
+  <data>
+    <!-- Acción para listar las tareas -->
+    <record model="ir.actions.act_window" id="action_lista_tareas">
+      <field name="name">Listado de tareas pendientes</field>
+      <field name="res_model">lista_tareas.lista</field>
+      <field name="view_mode">kanban,tree,form,calendar</field> <!-- Añadimos 'kanban' -->
+    </record>
+
+    <!-- Menú raíz -->
+    <menuitem name="Listado de tareas" id="lista_tareas_menu_root" />
+
+    <!-- Submenú principal -->
+    <menuitem name="Opciones Lista Tareas" id="lista_tareas_menu_1" parent="lista_tareas_menu_root" />
+    <menuitem name="Mostrar lista" id="lista_tareas_menu_1_list" parent="lista_tareas_menu_1" action="action_lista_tareas" />
+
+    <!-- Vista Tree (lista) -->
+    <record model="ir.ui.view" id="lista_tareas_tree">
+      <field name="name">Lista de tareas</field>
+      <field name="model">lista_tareas.lista</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="tarea" />
+          <field name="prioridad" />
+          <field name="urgente" />
+          <field name="realizada" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista Calendar -->
+    <record model="ir.ui.view" id="lista_tareas_calendar">
+      <field name="name">Calendario de tareas</field>
+      <field name="model">lista_tareas.lista</field>
+      <field name="arch" type="xml">
+        <calendar string="Calendario de Tareas" date_start="fecha_inicio" date_stop="fecha_fin">
+          <field name="tarea" />
+          <field name="prioridad" />
+        </calendar>
+      </field>
+    </record>
+
+    <!-- Vista Kanban -->
+    <record model="ir.ui.view" id="lista_tareas_kanban">
+      <field name="name">Kanban de tareas</field>
+      <field name="model">lista_tareas.lista</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="tarea" />
+          <field name="prioridad" />
+          <field name="urgente" />
+          <field name="realizada" />
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_card">
+                <strong><field name="tarea" /></strong>
+                <div><field name="prioridad" /></div>
+                <div>
+                  <span t-if="record.urgente.raw_value" class="badge badge-danger">Urgente</span>
+                </div>
+                <div t-if="record.realizada.raw_value" class="oe_kanban_footer">
+                  <span class="text-success">✔ Realizada</span>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+  </data>
+</odoo>

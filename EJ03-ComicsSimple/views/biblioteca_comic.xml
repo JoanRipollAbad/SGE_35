@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Definimos como mostramos la vista en el modelo -->
+    <record id='biblioteca_comic_action' model='ir.actions.act_window'>
+        <field name="name">Biblioteca de Comics</field>
+        <!-- Indicamos a que modelo aplica -->
+        <field name="res_model">biblioteca.comic</field>
+        <!-- Indicamos que los comics pueden verse en tree para el listado,
+            y en form para la creación/edición -->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+     <!-- Definición de la Vista formulario -->
+    <record id="biblioteca_comic_view_form" model="ir.ui.view">
+    <field name="name">Formulario de Comic de la biblioteca</field>
+    <field name="model">biblioteca.comic</field>
+    <field name="arch" type="xml">
+        <form>
+           
+            <group>
+                <field name="nombre"/>
+                <field name="autor"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+
+    <!-- Definición de la vista Tree -->
+    <record id="biblioteca_comic_view_tree" model="ir.ui.view">
+        <field name="name">Lista de Comics de la biblioteca</field>
+        <field name="model">biblioteca.comic</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Definición de la vista busqueda-->
+    <record id="biblioteca_comic_view_search" model="ir.ui.view">
+        <field name="name">Búsqueda de Comics en la biblioteca</field>
+        <field name="model">biblioteca.comic</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nombre"/>
+                <!-- Indicamos que para si filtramos por los del dominio "autor_ids=false" 
+                se muestre el texto "Sin autor"-->
+            </search>
+        </field>
+    </record>
+    
+    <record id="biblioteca_socio_action" model="ir.actions.act_window">
+        <field name="name">Socios</field>
+        <field name="res_model">biblioteca.socio</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="biblioteca_socio_view_tree" model="ir.ui.view">
+        <field name="name">Lista de Socios</field>
+        <field name="model">biblioteca.socio</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre"/>
+                <field name="apellido"/>
+                <field name="identificador"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="biblioteca_socio_view_form" model="ir.ui.view">
+        <field name="name">Formulario de Socios</field>
+        <field name="model">biblioteca.socio</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="nombre"/>
+                    <field name="apellido"/>
+                    <field name="identificador"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    
+    <record id="biblioteca_ejemplar_action" model="ir.actions.act_window">
+        <field name="name">Ejemplares de Comics</field>
+        <field name="res_model">biblioteca.ejemplar</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="biblioteca_ejemplar_view_form" model="ir.ui.view">
+        <field name="name">Formulario de Ejemplar</field>
+        <field name="model">biblioteca.ejemplar</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="comic_id" options="{'no_create': True}"/>
+                    <field name="socio_id"/>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_fin"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="biblioteca_ejemplar_view_tree" model="ir.ui.view">
+        <field name="name">Lista de Ejemplares</field>
+        <field name="model">biblioteca.ejemplar</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="comic_id"/>
+                <field name="socio_id"/>
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+            </tree>
+        </field>
+    </record>
+
+	
+    <!-- Simple menu item, sin más utilidad que la didáctica -->
+    <menuitem name="Mi biblioteca (extendida)" id="biblioteca_base_menu" />
+    <menuitem name="Comic" id="biblioteca_comic_menu" parent="biblioteca_base_menu" action="biblioteca_comic_action"/>
+    <menuitem name="Socios" id="biblioteca_socio_menu" parent="biblioteca_base_menu"  action="biblioteca_socio_action"/>
+    <menuitem name="Ejemplares" id="biblioteca_ejemplares_menu" parent="biblioteca_base_menu" action="biblioteca_ejemplar_action"/>
+
+</odoo>

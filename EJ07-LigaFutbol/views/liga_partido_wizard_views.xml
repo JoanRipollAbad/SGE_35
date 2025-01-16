@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_liga_partido_wizard_form" model="ir.ui.view">
+        <field name="name">Wizard para crear partidos</field>
+        <field name="model">liga.partido.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Crear Nuevo Partido">
+                <sheet>
+                    <group>
+                        <field name="equipo_casa" />
+                        <field name="goles_casa" />
+                        <field name="equipo_fuera" />
+                        <field name="goles_fuera" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Crear Partido" type="object" name="create_match" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_create_partido_wizard" model="ir.actions.act_window">
+        <field name="name">Crear Nuevo Partido</field>
+        <field name="res_model">liga.partido.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
+
